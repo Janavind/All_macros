@@ -1,0 +1,3 @@
+[submodule "sel_set"]
+	path = sel_set
+	url = /opt/mpw6/sel_set/
