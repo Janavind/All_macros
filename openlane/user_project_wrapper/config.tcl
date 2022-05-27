@@ -39,38 +39,73 @@ set ::env(VERILOG_FILES) "\
 
 ## Clock configurations
 set ::env(CLOCK_PORT) "user_clock2"
-set ::env(CLOCK_NET) "mprj.clk"
+set ::env(CLOCK_NET) "clk"
 
 set ::env(CLOCK_PERIOD) "10"
-
-## Internal Macros
-### Macro PDN Connections
-set ::env(FP_PDN_MACRO_HOOKS) "\
-	mprj vccd1 vssd1"
-
-### Macro Placement
-set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
+set ::env(PL_BASIC_PLACEMENT) 0
 
 ### Black-box verilog and views
+#set ::env(VERILOG_FILES_BLACKBOX) "\
+#	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+#	$script_dir/../../verilog/rtl/user_proj_example.v"
+
+## Internal Macros
+#### Macro PDN Connections
+set ::env(FP_PDN_MACRO_HOOKS) "\
+        u_macro_7 vccd1 vssd1 "
+#        u_macro_test vccd1 vssd1  
+#	u_macro_7 vccd1 vssd1"
+
+        ### Macro Placement
+set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
+### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
-	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+        $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+        $script_dir/../../verilog/rtl/macro_7.v "
+#	$script_dir/../../verilog/rtl/macro_7.v \
+#        $script_dir/../../verilog/rtl/macro_10.v "
 
-set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/user_proj_example.lef"
 
-set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/user_proj_example.gds"
+set ::env(EXTRA_LEFS) "\ 
+	$script_dir/../../lef/macro_7.lef "
+#	$script_dir/../../lef/macro_7.lef \
+#        $script_dir/../../lef/macro_10.lef"
+
+set ::env(EXTRA_GDS_FILES) "\ 
+	$script_dir/../../gds/macro_7.gds"
+#	$script_dir/../../gds/macro_7.gds \
+#        $script_dir/../../gds/macro_10.gds"
+
+set ::env(FP_PDN_ENABLE_MACROS_GRID) "1"
+set ::env(FP_PDN_ENABLE_GLOBAL_CONNECTIONS) "1"
+
+#set ::env(VDD_NETS) "vccd1 vccd2 vdda1 vdda2"
+#set ::env(GND_NETS) "vssd1 vssd2 vssa1 vssa2"
+
+#set ::env(VDD_PIN) "vccd1"
+#set ::env(GND_PIN) "vssd1"
+
+ ## Internal Macros
+ ##### Macro PDN Connections
+#    set ::env(FP_PDN_MACRO_HOOKS) "\
+#        user_proj_example vccd1 vssd1"
+ ### Macro Placement
+ #   set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 
 # set ::env(GLB_RT_MAXLAYER) 5
-set ::env(RT_MAX_LAYER) {met4}
+set ::env(RT_MAX_LAYER) "met4"
 
 # disable pdn check nodes becuase it hangs with multiple power domains.
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
-set ::env(FP_PDN_CHECK_NODES) 0
+#set ::env(SYNTH_STRATEGY) "AREA 0"
+set ::env(FP_PDN_CHECK_NODES) 1
+# set ::env(GLB_RT_ALLOW_CONGESTION) 1
+set ::env(GLB_RT_ADJUSTMENT) "0.20"
+#set ::env(FP_PDN_POWER_STRAPS) "vccd1 vssd1 1, vccd2 vssd2 0, vdda1 vssa1 0, vdda2 vssa2 0"
+set ::env(MAGIC_WRITE_FULL_LEF) 1
 
 # The following is because there are no std cells in the example wrapper project.
-set ::env(SYNTH_TOP_LEVEL) 1
+set ::env(SYNTH_TOP_LEVEL) 0
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
 set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
@@ -84,3 +119,4 @@ set ::env(DIODE_INSERTION_STRATEGY) 0
 set ::env(FILL_INSERTION) 0
 set ::env(TAP_DECAP_INSERTION) 0
 set ::env(CLOCK_TREE_SYNTH) 0
+

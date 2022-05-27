@@ -21,8 +21,14 @@
     // Assume default net type to be wire because GL netlists don't have the wire definitions
     `default_nettype wire
     `include "gl/user_project_wrapper.v"
-    `include "gl/user_proj_example.v"
+//        `include "gl/sample.v"
+//    `include "gl/macro_10.v"
+   `include "gl/macro_7.v"
+//    `include "gl/macro_test.v"
 `else
     `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
+//    `include "sample.v"
+//     `include "macro_10.v"
+    `include "macro_7.v"
+//    `include "macro_test.v"
 `endif
