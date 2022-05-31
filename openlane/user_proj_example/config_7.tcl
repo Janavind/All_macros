@@ -18,12 +18,12 @@ set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 set script_dir [file dirname [file normalize [info script]]]
 
-set ::env(DESIGN_NAME) macro_7
+set ::env(DESIGN_NAME) macro_four
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/macro_7.v \
-        $script_dir/../../verilog/rtl/my_alu_xor.v"
+	$script_dir/../../verilog/rtl/macro_four.v \
+        $script_dir/../../verilog/rtl/alu_xor_4.v"
 
 set ::env(DESIGN_IS_CORE) 0
 

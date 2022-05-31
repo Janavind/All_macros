@@ -75,6 +75,27 @@ output [`MPRJ_IO_PADS-1:0] io_oeb,
  /*--------------------------------------*/
  /* User project is instantiated  here   */
  /*--------------------------------------*/
+
+
+	wire [31: 0] active;
+	assign active = la_data_in[31:0];
+
+	// split remaining 96 logic analizer wires into 3 chunks
+	 wire [31: 0] la1_data_in, la1_data_out, la1_oenb;
+	 assign la1_data_in = la_data_in[63:32];
+	 assign la1_data_out = la_data_out[63:32];
+	 assign la1_oenb = la_oenb[63:32];
+	
+	 wire [31: 0] la2_data_in, la2_data_out, la2_oenb;
+	 assign la2_data_in = la_data_in[95:64];
+	 assign la2_data_out = la_data_out[95:64];
+	 assign la2_oenb = la_oenb[95:64];
+	
+	 wire [31: 0] la3_data_in, la3_data_out, la3_oenb;
+	 assign la3_data_in = la_data_in[127:96];
+	 assign la3_data_out = la_data_out[127:96];
+	 assign la3_oenb = la_oenb[127:96];
+
 /*assign io_oeb[37:0]=0;
 wire [37:0] dum2;
 assign dum2 = analog_io [37:0];
@@ -148,11 +169,13 @@ assign la_oenb[127:0]=0;
          //.la_data_out(la_data_out),
  );
 */
- 
+ /*
 wire [5:0] active;
 assign active = la_data_in[5:0];
-
- macro_7 u_macro_7 (
+*/
+//wire [37:0] io_oeb;
+//assign io_oeb =1;
+ macro_la u_macro_la (
 
 	 `ifdef USE_POWER_PINS
 //		 .vdda1(vdda1),  // User area 1 3.3V supply
@@ -173,10 +196,10 @@ assign active = la_data_in[5:0];
 			 .wbs_adr_i(wbs_adr_i),
 			 .wbs_ack_o(wbs_ack_o),
 			 .wbs_dat_o(wbs_dat_o),
-			 .active (active[0]),
-			 .la_data_in(la_data_in),
-			 .la_data_out(la_data_out),
-			 .la_oenb(la_oenb),
+			 .la1_data_in(la1_data_in),
+			 .la1_data_out(la1_data_out),
+			 .la1_oenb(la1_oenb),
+			 .active(active[1]),
 			 .io_in(io_in),
 			 .io_out(io_out),
 			 .io_oeb(io_oeb),

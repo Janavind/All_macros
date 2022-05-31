@@ -54,7 +54,6 @@ void main()
 
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
-
 //	 reg_spi_enable = 1;
 	// reg_spimaster_cs = 0x10001;
 	// reg_spimaster_control = 0x0801;
@@ -68,15 +67,36 @@ void main()
 
 	// Configure lower 8-IOs as user output
 	// Observe counter value in the testbench
-	
-reg_mprj_io_0 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_1 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_2 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_3 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_4 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_5 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_6 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_7 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
+	//
+ reg_gpio_mode1 = 1;
+ reg_gpio_mode0 = 1;
+// reg_gpio_ien = 1;
+// reg_gpio_oe = 1;
+
+int active =1;
+if(active)
+{
+	reg_gpio_oe = 1;
+// reg_gpio_out = 0;
+ //reg_gpio_out = 0;
+reg_gpio_out = 1;
+}
+//reg_gpio_out = 0;
+//reg_gpio_out = 0;
+else
+{
+reg_gpio_ien = 1;
+reg_gpio_out = 0;
+}
+
+reg_mprj_io_0 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_1 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_2 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_3 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_4 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_5 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_6 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_7 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 reg_mprj_io_8 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
 reg_mprj_io_9 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
 reg_mprj_io_10 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
@@ -104,16 +124,26 @@ reg_mprj_io_31 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
 reg_mprj_io_32 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
 reg_mprj_io_33 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
 reg_mprj_io_34 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_35 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
+reg_mprj_io_35 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_36 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_37 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 
-
-	/* Apply configuration */
+//	 Apply configuration 
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
 /*
 reg_la0_iena = 0; // input disabled
 reg_la0_oenb = 0xffffffff; // all outputs enabled
 reg_la0_data = 1 << 7;	
-*/	
+*/	if (active == 1)
+	{
+	reg_gpio_oe = reg_gpio_ien = 0xFFFFFFFF;
+	}
+		else {
+	reg_gpio_oe = reg_gpio_ien = 0x00000000;
+		}
+
+reg_gpio_out = 1;
+//reg_gpio_out = 1;
 }
 

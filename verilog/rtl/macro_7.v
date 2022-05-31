@@ -52,16 +52,29 @@ module macro_7  (
 		 input   user_clock2,
 		
 		// // User maskable interrupt signals
-		output [2:0] user_irq,
+		output [2:0] user_irq
 
-		input wire active
+//		input wire active
 		 );
 		//
 		// /*--------------------------------------*/
 		// /* User project is instantiated  here   */
 		// /*--------------------------------------*/
 		//
+	reg [8:0] A0, B0, A1, B1;
+	reg [1:0] ALU_Sel1, ALU_Sel2;
+	wire [8:0] ALU_Out1,ALU_Out2; // ALU 8-bit Output
+	wire CarryOut1,CarryOut2; // Carry Out Flag
+	wire [8:0] x;
+	wire y;
+	wire clk;
+	reg active;
 	wire [`MPRJ_IO_PADS-1:0]    buf_io_out;
+	wire [`MPRJ_IO_PADS-1:0]    buf_io_oeb;
+	//wire [37:0]io_oeb;
+	//assign io_oeb[37:0]=1;
+        assign io_out[37:0]=buf_io_out[37:0];
+	assign io_oeb[37:0]=buf_io_oeb[37:0];
 /*	assign io_oeb[37:0]=0;
         wire [37:0] dum2;
 	assign dum2 = analog_io [37:0];
@@ -83,27 +96,32 @@ module macro_7  (
         assign la2_data_out = la_data_out[127:0];
         assign la2_oenb = la_oenb[127:0];
 
-	*/
+	
 
- wire [7:0] A0, B0, A1, B1;
+ wire [8:0] A0, B0, A1, B1;
  wire [1:0] ALU_Sel1, ALU_Sel2;
- wire [7:0] ALU_Out1,ALU_Out2; // ALU 8-bit Output
+ wire [8:0] ALU_Out1,ALU_Out2; // ALU 8-bit Output
  wire CarryOut1,CarryOut2; // Carry Out Flag
- wire [7:0] x;
+ wire [8:0] x;
  wire y;
  wire clk;
- /*wire[7:0] A0 = io_in[7:0];
+ wire[7:0] A0 = io_in[7:0];
  wire[7:0] B0 = io_in[15:8];
  wire[7:0] A1 = io_in[23:16];
  wire[7:0] B1 = io_in[31:24]; 
  wire[1:0] ALU_Sel1 = io_in[33:32];
  wire[1:0] ALU_Sel2 = io_in[35:34];
  */
+
  `ifdef FORMAL
 	 assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'b0}};
+	 assign io_oeb       = active ? buf_io_oeb       : {`MPRJ_IO_PADS{1'b0}};
 	 `include "properties.v"
+//	 $display("outputs and active is",io_out,active);
  `else
 	 assign io_out       = active ? buf_io_out       : {`MPRJ_IO_PADS{1'bz}};
+
+	 //$display("outputs and active is",io_out,active);
  `endif
 
  /*assign io_out[7:0] = ALU_Out1; 
@@ -113,6 +131,8 @@ module macro_7  (
  assign io_out[25:18] = x;
  assign io_out[26] = y;
 */
+//#1000;
+//$display("Outputs",io_out);
 
  my_alu_xor u_my_alu_xor(
 `ifdef USE_POWER_PINS
@@ -120,12 +140,12 @@ module macro_7  (
  .vssd1(vssd1),
 `endif
  .clk(wb_clk_i),
- .A0(io_in[7:0]),
- .B0(io_in[15:8]),
- .A1(io_in[23:16]),
- .B1(io_in[31:24]),
- .ALU_Sel1(io_in[33:32]),
- .ALU_Sel2(io_in[35:34]),
+ .A0(io_in[13:6]),
+ .B0(io_in[21:14]),
+ .A1(io_in[29:22]),
+ .B1(io_in[37:30]),
+ .ALU_Sel1(io_in[5:4]),
+ .ALU_Sel2(io_in[1:0]),
  .ALU_Out1(buf_io_out[15:8]),
  .ALU_Out2(buf_io_out[23:16]),
  .CarryOut1(buf_io_out[24]),

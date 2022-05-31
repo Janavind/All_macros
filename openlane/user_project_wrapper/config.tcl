@@ -61,18 +61,18 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
         $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-        $script_dir/../../verilog/rtl/macro_7.v "
+        $script_dir/../../verilog/rtl/macro_la.v "
 #	$script_dir/../../verilog/rtl/macro_7.v \
 #        $script_dir/../../verilog/rtl/macro_10.v "
 
 
 set ::env(EXTRA_LEFS) "\ 
-	$script_dir/../../lef/macro_7.lef "
+	$script_dir/../../lef/macro_la.lef "
 #	$script_dir/../../lef/macro_7.lef \
 #        $script_dir/../../lef/macro_10.lef"
 
 set ::env(EXTRA_GDS_FILES) "\ 
-	$script_dir/../../gds/macro_7.gds"
+	$script_dir/../../gds/macro_la.gds"
 #	$script_dir/../../gds/macro_7.gds \
 #        $script_dir/../../gds/macro_10.gds"
 

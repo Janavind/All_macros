@@ -33,6 +33,20 @@ assign x[7:0] = ALU_Out1[7:0] ^ ALU_Out2[7:0];
 assign y = CarryOut1 ^ CarryOut2;
 always @(*)
 begin
+  $display("A0", A0[7:0]);
+  $display("A1", A1[7:0]);
+  $display("B0", B0[7:0]);
+  $display("B1", B1[7:0]);
+  $display("ALU_Sel1", ALU_Sel1[1:0]);
+  $display("ALU_Sel2", ALU_Sel2[1:0]);
+  #1000;  
+  $display("ALU_Out1", ALU_Out1[7:0]);
+  $display("ALU_Out2", ALU_Out2[7:0]);
+  $display("CarryOut1", CarryOut1);
+  $display("CarryOut2", CarryOut2);
+  $display("x", x[7:0]);
+  $display("y", y);
+#1000;
 if (x!=0)
 $display ("Faulty ALU");
 else
