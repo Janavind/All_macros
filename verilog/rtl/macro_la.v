@@ -33,15 +33,15 @@ module macro_la  (
 		
 		// // Logic Analyzer Signals
 	`ifdef USE_LA
-		 input  wire [31:0] la1_data_in,
-		 output wire [31:0] la1_data_out,
-		 input  wire [31:0] la1_oenb,
+		 input  wire [127:0] la_data_in,
+		 output wire [127:0] la_data_out,
+		 input  wire [127:0] la_oenb,
 	 `endif	
 		// // IOs
 	`ifdef USE_IO
-		 input  [`MPRJ_IO_PADS-1:0] io_in,
-		 output [`MPRJ_IO_PADS-1:0] io_out,
-		 output [`MPRJ_IO_PADS-1:0] io_oeb,
+		 input  wire [`MPRJ_IO_PADS-1:0] io_in,
+		 output wire [`MPRJ_IO_PADS-1:0] io_out,
+		 output wire [`MPRJ_IO_PADS-1:0] io_oeb,
 	 `endif	
 		// // Analog (direct connection to GPIO pad---use with
 		// caution)
@@ -54,10 +54,10 @@ module macro_la  (
 		 inout [`MPRJ_IO_PADS-10:0] analog_io,
 		
 		// // Independent clock (on independent integer divider)
-		 input   user_clock2,
+		 input  wire user_clock2,
 		
 		// // User maskable interrupt signals
-		output [2:0] user_irq,
+		output wire [2:0] user_irq,
 
 		input wire active
 		 );
@@ -73,7 +73,8 @@ module macro_la  (
 	wire [3:0] x;
 	wire y;
 	wire clk;
-	
+	wire [31:0] la1_data_out;
+	assign la1_data_out = la_data_out[63:32];
 	wire [31:0]                 buf_la1_data_out;
 	wire [`MPRJ_IO_PADS-1:0]    buf_io_out;
 	wire [`MPRJ_IO_PADS-1:0]    buf_io_oeb;
@@ -142,7 +143,7 @@ module macro_la  (
  `endif
 
   assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}}; //enabled
-  assign buf_la1_data_out = {`MPRJ_IO_PADS{1'b0}}; //enabled
+  //assign buf_la1_data_out = {`MPRJ_IO_PADS{1'b0}}; //enabled
  /*assign io_out[7:0] = ALU_Out1; 
  assign io_out[15:8] = ALU_Out2;
  assign io_out[16] = CarryOut1;
@@ -165,7 +166,6 @@ module macro_la  (
 	.B1(io_in[33:30]),
 	.ALU_Sel1(io_in[35:34]),
 	.ALU_Sel2(io_in[37:36]),
-//active(io_in[37:36]),
 	.ALU_Out1(buf_io_out[17:14]),
 	.ALU_Out2(buf_io_out[13:10]),
 	.CarryOut1(buf_io_out[5]),

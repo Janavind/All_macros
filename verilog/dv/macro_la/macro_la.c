@@ -46,7 +46,7 @@ void main()
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
 
-//	 reg_spi_enable = 1;
+	 reg_spi_enable = 1;
 	// reg_spimaster_cs = 0x10001;
 	// reg_spimaster_control = 0x0801;
 

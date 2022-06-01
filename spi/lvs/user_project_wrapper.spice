@@ -1,7 +1,7 @@
 * NGSPICE file created from user_project_wrapper.ext - technology: sky130A
 
-* Black-box entry subcircuit for macro_7 abstract view
-.subckt macro_7 active analog_io[0] analog_io[10] analog_io[11] analog_io[12] analog_io[13]
+* Black-box entry subcircuit for macro_la abstract view
+.subckt macro_la active analog_io[0] analog_io[10] analog_io[11] analog_io[12] analog_io[13]
 + analog_io[14] analog_io[15] analog_io[16] analog_io[17] analog_io[18] analog_io[19]
 + analog_io[1] analog_io[20] analog_io[21] analog_io[22] analog_io[23] analog_io[24]
 + analog_io[25] analog_io[26] analog_io[27] analog_io[28] analog_io[2] analog_io[3]
@@ -205,7 +205,7 @@
 + wbs_dat_o[28] wbs_dat_o[29] wbs_dat_o[2] wbs_dat_o[30] wbs_dat_o[31] wbs_dat_o[3]
 + wbs_dat_o[4] wbs_dat_o[5] wbs_dat_o[6] wbs_dat_o[7] wbs_dat_o[8] wbs_dat_o[9] wbs_sel_i[0]
 + wbs_sel_i[1] wbs_sel_i[2] wbs_sel_i[3] wbs_stb_i wbs_we_i
-Xu_macro_7 la_data_in[0] analog_io[0] analog_io[10] analog_io[11] analog_io[12] analog_io[13]
+Xu_macro_la la_data_in[1] analog_io[0] analog_io[10] analog_io[11] analog_io[12] analog_io[13]
 + analog_io[14] analog_io[15] analog_io[16] analog_io[17] analog_io[18] analog_io[19]
 + analog_io[1] analog_io[20] analog_io[21] analog_io[22] analog_io[23] analog_io[24]
 + analog_io[25] analog_io[26] analog_io[27] analog_io[28] analog_io[2] analog_io[3]
@@ -288,7 +288,7 @@ Xu_macro_7 la_data_in[0] analog_io[0] analog_io[10] analog_io[11] analog_io[12] 
 + la_oenb[83] la_oenb[84] la_oenb[85] la_oenb[86] la_oenb[87] la_oenb[88] la_oenb[89]
 + la_oenb[8] la_oenb[90] la_oenb[91] la_oenb[92] la_oenb[93] la_oenb[94] la_oenb[95]
 + la_oenb[96] la_oenb[97] la_oenb[98] la_oenb[99] la_oenb[9] user_clock2 user_irq[0]
-+ user_irq[1] user_irq[2] vccd1 vssd1 u_macro_7/wb_clk_i wb_rst_i wbs_ack_o wbs_adr_i[0]
++ user_irq[1] user_irq[2] vccd1 vssd1 u_macro_la/wb_clk_i wb_rst_i wbs_ack_o wbs_adr_i[0]
 + wbs_adr_i[10] wbs_adr_i[11] wbs_adr_i[12] wbs_adr_i[13] wbs_adr_i[14] wbs_adr_i[15]
 + wbs_adr_i[16] wbs_adr_i[17] wbs_adr_i[18] wbs_adr_i[19] wbs_adr_i[1] wbs_adr_i[20]
 + wbs_adr_i[21] wbs_adr_i[22] wbs_adr_i[23] wbs_adr_i[24] wbs_adr_i[25] wbs_adr_i[26]
@@ -305,6 +305,6 @@ Xu_macro_7 la_data_in[0] analog_io[0] analog_io[10] analog_io[11] analog_io[12] 
 + wbs_dat_o[25] wbs_dat_o[26] wbs_dat_o[27] wbs_dat_o[28] wbs_dat_o[29] wbs_dat_o[2]
 + wbs_dat_o[30] wbs_dat_o[31] wbs_dat_o[3] wbs_dat_o[4] wbs_dat_o[5] wbs_dat_o[6]
 + wbs_dat_o[7] wbs_dat_o[8] wbs_dat_o[9] wbs_sel_i[0] wbs_sel_i[1] wbs_sel_i[2] wbs_sel_i[3]
-+ wbs_stb_i wbs_we_i macro_7
++ wbs_stb_i wbs_we_i macro_la
 .ends
 

@@ -178,16 +178,16 @@ assign active = la_data_in[5:0];
  macro_la u_macro_la (
 
 	 `ifdef USE_POWER_PINS
-//		 .vdda1(vdda1),  // User area 1 3.3V supply
-//			 .vdda2(vdda2),  // User area 2 3.3V supply
-//			 .vssa1(vssa1),  // User area 1 analog ground
-//			 .vssa2(vssa2),  // User area 2 analog ground
+		 .vdda1(vdda1),  // User area 1 3.3V supply
+			 .vdda2(vdda2),  // User area 2 3.3V supply
+			 .vssa1(vssa1),  // User area 1 analog ground
+			 .vssa2(vssa2),  // User area 2 analog ground
 			 .vccd1(vccd1),  // User area 1 1.8V supply
-//			 .vccd2(vccd2),  // User area 2 1.8v supply
+			 .vccd2(vccd2),  // User area 2 1.8v supply
 			 .vssd1(vssd1),  // User area 1 digital ground
-  //			 .vssd2(vssd2),  // User area 2 digital ground
+  			 .vssd2(vssd2),  // User area 2 digital ground
 		 `endif
-		 .wb_rst_i(wb_rst_i),
+ 			 .wb_rst_i(wb_rst_i),
 			 .wbs_stb_i(wbs_stb_i),
 			 .wbs_cyc_i(wbs_cyc_i),
 			 .wbs_we_i(wbs_we_i),
@@ -196,13 +196,13 @@ assign active = la_data_in[5:0];
 			 .wbs_adr_i(wbs_adr_i),
 			 .wbs_ack_o(wbs_ack_o),
 			 .wbs_dat_o(wbs_dat_o),
-			 .la1_data_in(la1_data_in),
-			 .la1_data_out(la1_data_out),
-			 .la1_oenb(la1_oenb),
+			 .la_data_in(la_data_in),
+			 .la_data_out(la_data_out),
+			 .la_oenb(la_oenb),
 			 .active(active[1]),
-			 .io_in(io_in),
-			 .io_out(io_out),
-			 .io_oeb(io_oeb),
+			 .io_in(io_in[37:0]),
+			 .io_out(io_out[37:0]),
+			 .io_oeb(io_oeb[37:0]),
 			 .user_irq(user_irq),
 			 .user_clock2(user_clock2),
 			 .analog_io(analog_io)

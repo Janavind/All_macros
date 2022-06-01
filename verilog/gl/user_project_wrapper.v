@@ -54,7 +54,7 @@ module user_project_wrapper (user_clock2,
  input [3:0] wbs_sel_i;
 
 
- macro_7 u_macro_7 (.active(la_data_in[0]),
+ macro_la u_macro_la (.active(la_data_in[1]),
     .user_clock2(user_clock2),
     .vccd1(vccd1),
     .vssd1(vssd1),

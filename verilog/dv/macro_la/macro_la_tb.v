@@ -50,8 +50,8 @@ module macro_la_tb;
 	assign mprj_io[32:31]=ALU_Sel1;
 	assign mprj_io[34:33]=ALU_Sel2;
 */	
-assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;	
-
+assign mprj_io[3] =1'b1;
+//= (CSB == 1'b1) ? 1'b1 : 1'bz;	
 //	assign mprj_io[3]=1'b1;
 
 
@@ -70,7 +70,7 @@ assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 		$dumpvars(0, macro_la_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (25) begin
+		repeat (45) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -94,7 +94,6 @@ assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
  ALU_Sel2<=2'b00;
  ALU_Sel1<=2'b00;
 
-wait(gpio==1);
 wait(mprj_io_out == 15'b001000000010101);
 //$display("display_output",mprj_io[14:0]);
 #1000;
