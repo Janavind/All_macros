@@ -19,21 +19,12 @@
 #include <defs.h>
 #include <stub.c>
 
-
 /*
 	IO Test:
 		- Configures MPRJ lower 8-IO pins as outputs
 		- Observes counter value through the MPRJ lower 8 IO pins (in the testbench)
 */
-/*void failTest() {
-	    reg_mprj_datal = 0xAB620000;
-	         while(1) {} // Block in case the TB has an error.
-		 }
-		
-		 void successTest() {
-		     reg_mprj_datal = 0xAB610000;
-		     }
-*/
+
 void main()
 {
 	/* 
@@ -54,11 +45,12 @@ void main()
 
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
-//	 reg_spi_enable = 1;
+
+	 reg_spi_enable = 1;
 	// reg_spimaster_cs = 0x10001;
 	// reg_spimaster_control = 0x0801;
 
-//	 reg_spimaster_control = 0xa002;	// Enable, prescaler = 2,
+	// reg_spimaster_control = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
 	// Connect the housekeeping SPI to the SPI master
@@ -67,83 +59,60 @@ void main()
 
 	// Configure lower 8-IOs as user output
 	// Observe counter value in the testbench
-	//
- reg_gpio_mode1 = 1;
- reg_gpio_mode0 = 1;
-// reg_gpio_ien = 1;
-// reg_gpio_oe = 1;
+//	reg_mprj_datal = 0x00000000;
+//	reg_mprj_datah = 0xFFFFFFFF;
 
-int active =1;
-if(active)
-{
-	reg_gpio_oe = 1;
-// reg_gpio_out = 0;
- //reg_gpio_out = 0;
-reg_gpio_out = 1;
-}
-//reg_gpio_out = 0;
-//reg_gpio_out = 0;
-else
-{
-reg_gpio_ien = 1;
-reg_gpio_out = 0;
-}
 
-reg_mprj_io_0 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_1 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_2 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_3 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_4 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_5 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_6 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_7 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_8 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_9 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_10 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_11 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_12 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_13 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_14 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_15 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_16 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_17 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_18 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_19 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_20 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_21 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_22 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_23 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_24 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_25 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_26 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_27 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_28 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_29 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_30 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_31 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_32 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_33 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_34 =  GPIO_MODE_USER_STD_BIDIRECTIONAL;
-reg_mprj_io_35 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_36 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
-reg_mprj_io_37 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 
-//	 Apply configuration 
+reg_mprj_io_0 =  GPIO_MODE_USER_STD_OUTPUT;
+//reg_mprj_io_1 =  GPIO_MODE_USER_STD_OUTPUT;
+//reg_mprj_io_2 =  GPIO_MODE_USER_STD_OUTPUT;
+//reg_mprj_io_3 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_4 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_5 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_6 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_7 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_8 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_9 =  GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_10 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_11 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_12 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_13 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT;
+
+reg_mprj_io_15 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_16 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_17 = GPIO_MODE_USER_STD_OUTPUT;
+reg_mprj_io_18 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_19 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_20 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_21 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_22 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_23 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_24 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_25 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_26 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_27 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_28 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_29 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_30 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_31 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_32 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_33 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_34 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_35 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_36 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+reg_mprj_io_37 = GPIO_MODE_USER_STD_INPUT_NOPULL;
+
+
+
+	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
-/*
-reg_la0_iena = 0; // input disabled
+//	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+reg_la0_iena = 0x00000000;// input enabled
 reg_la0_oenb = 0xffffffff; // all outputs enabled
-reg_la0_data = 1 << 7;	
-*/	if (active == 1)
-	{
-	reg_gpio_oe = reg_gpio_ien = 0xFFFFFFFF;
-	}
-		else {
-	reg_gpio_oe = reg_gpio_ien = 0x00000000;
-		}
-
-reg_gpio_out = 1;
-//reg_gpio_out = 1;
+reg_la0_data = 1 << 1;	
+//	while(1);
 }
 

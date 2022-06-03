@@ -3,7 +3,7 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-	//
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
@@ -26,51 +26,35 @@ module macro_7_tb;
 
 	wire gpio;
 	wire [37:0] mprj_io;
+	wire [14:0] mprj_io_out;
 
-	reg clk;
-	reg[7:0] A0;
-	reg[7:0] B0;
-	reg[7:0] A1;
-	reg[7:0] B1;
+	reg[3:0] A0;
+	reg[3:0] B0;
+	reg[3:0] A1;
+	reg[3:0] B1;
 	reg[1:0] ALU_Sel1;
 	reg[1:0] ALU_Sel2;
-	wire [26:0] mprj_io_out;
-	wire [37:0] mprj_io_in;
-	reg enable;
 
-assign mprj_io_out = mprj_io[34:8];
-assign mprj_io_in[37:0] = {B1,A1,B0,A0,ALU_Sel2,ALU_Sel1,clk};
-assign mprj_io[37:0] = mprj_io_in[37:0];
-assign mprj_io[37:0] = (enable==1) ? mprj_io_in[37:0] : 37'bz;
-//assign mprj_io[37:0] = (enable) ? mprj_io_in[37:0] : 37'bz;
-//assign mprj_io[37:0] = (enable==1) ? mprj_io_in[26:0] : 37'bz;
-//assign mprj_io[3]=1;
-//assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
+ assign mprj_io_out[14:1]=mprj_io[17:4];
+ assign mprj_io_out[0]=mprj_io[0];
+
+ assign mprj_io[37:18] = {ALU_Sel2,ALU_Sel1,B1,A1,B0,A0};
+//ssign mprj_io[3] = (CSB == 1'b0) ? 1'b1 : 1'bz;
+//	assign mprj_io[3] = 1'b1;
 /*
-assign mprj_io_in[13:6]<=A0;
-assign mprj_io_in[21:14]<=B0;
-assign mprj_io_in[29:22]<=A1;
-assign mprj_io_in[37:30]<=B1;
-assign mprj_io_in[1:0]<=ALU_Sel1;
-assign mprj_io_in[5:4]<=ALU_Sel2;
-assign mprj_io_in[2]<=clk;
+	assign mprj_io[18:15]=A0;
+	assign mprj_io[22:19]=B0;
+	assign mprj_io[26:23]=A1;
+	assign mprj_io[30:27]=B1;
+	assign mprj_io[32:31]=ALU_Sel1;
+	assign mprj_io[34:33]=ALU_Sel2;
+*/	
+assign mprj_io[3] =1'b1;
+//= (CSB == 1'b1) ? 1'b1 : 1'bz;	
+//	assign mprj_io[3]=1'b1;
 
-//assign mprj_io_in[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
-wire [7:0] ALU_Out1;
-assign ALU_Out1= mprj_io_out[7:0];
-wire [7:0] ALU_Out2;
-assign ALU_Out2= mprj_io_out[15:8]; // ALU 8-bit Output
-wire CarryOut1;
-assign CarryOut1= mprj_io_out[16];
-wire CarryOut2;
-assign CarryOut2= mprj_io_out[17]; // Carry Out Flag
-wire [7:0] x;
-assign x= mprj_io_out[25:18];
-wire y;
-assign y= mprj_io_out[26]; 
-*/
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
 	// would be the fast clock.
@@ -78,7 +62,7 @@ assign y= mprj_io_out[26];
 	always #12.5 clock <= (clock === 1'b0);
 
 	initial begin
-		clock=0;
+		clock = 0;
 	end
 
 	initial begin
@@ -86,64 +70,43 @@ assign y= mprj_io_out[26];
 		$dumpvars(0, macro_7_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (25) begin
+		repeat (50) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
 		`ifdef GL
-			$display ("Timeout, Test Mega-Project IO Ports (GL) Failed");
+			$display ("Monitor: Timeout, Test Mega-Project IO Ports (GL) Failed");
 		`else
-			$display ("Timeout, Test Mega-Project IO Ports (RTL) Failed");
+			$display ("Monitor: Timeout, Test Mega-Project IO Ports (RTL) Failed");
 		`endif
 		$display("%c[0m",27);
 		$finish;
 	end
 
-//assign mprj_io[37:0] = (enable==1) ? mprj_io_in[37:0] : 37'bz;
-//assign mprj_io[27:0] = (enable==0) ? mprj_io_out[27:0] : 27'bz;
-
-initial begin
-
-enable=0;
- //clk = 1'b1;
- A0<=8'b10000001;
- B0<=8'b10000001;
- A1<=8'b00000000;
- B1<=8'b00000000;
- ALU_Sel1<=2'b00;
+	initial begin
+	    // Observe Output pins [7:0]
+ 
+ A0<=4'b1001;
+ B0<=4'b1001;
+ A1<=4'b0000;
+ B1<=4'b0000;
  ALU_Sel2<=2'b00;
- #1000
-enable=1;
-wait (mprj_io_out==27'b100000010010000000000000010);
+ ALU_Sel1<=2'b00;
 
-
-/* ALU_Out1<=8'b00000010;
- ALU_Out2<=8'b00000010;
- CarryOut1<=1'b1;
- CarryOut2<=1'b0;
-  */
-/*
-if(ALU_Out1 != ALU_Out2)
-	$display("Add - ALU1 != ALU2");
-else
-	$display("Add - ALU1 = ALU2");
-#10;
-if(CarryOut1 !=CarryOut2)
-	$display("Add - Carry1 != Carry2");
-else
-	$display("Add - Carry1 = Carry2");
-*/
-$display("%c[1;25m",27);
+wait(mprj_io_out == 15'b001000000010101);
+//$display("display_output",mprj_io[14:0]);
+#1000;
+	$display("%c[1;25m",27);	
 	`ifdef GL
-	    	$display("Test 1 Mega-Project IO (GL) Passed");
+	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
 		`else
-		    $display("Test 1 Mega-Project IO (RTL) Passed");
+		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
 		`endif
-		$display("%c[1;25m",27);
+		$display("%c[0m",27);
 	    $finish;
+	end
 
-end
 	initial begin
 		RSTB <= 1'b0;
 		CSB  <= 1'b1;		// Force CSB high
@@ -151,6 +114,7 @@ end
 		RSTB <= 1'b1;	    	// Release reset
 		#300000;
 		CSB = 1'b0;		// CSB can be released
+
 	end
 
 	initial begin		// Power-up sequence
@@ -168,33 +132,12 @@ end
 		power4 <= 1'b1;
 	end
 
-/*
-	always @(mprj_io) begin
-		
-		#1 $display("MPRJ-IO state = %b ", mprj_io[37:0]);
+	always @(mprj_io_out) begin
+	         #1 $display("Outputs = %b ", mprj_io_out[14:0]);
 	end
-*/
-
-//always @(mprj_io) begin
-//	#1 $display("MPRJ-IO state = %b ", mprj_io[7:0]);
-//end
-
-// Observe changes in mprj_io_out (27 bit)
-//initial begin 
-//	enable = 0;
-always @(mprj_io) begin
-	 
- #1000 $display("MPRJ-IO-IN = %b ", mprj_io_in[37:0]);
- end 
-//
-// // Observe changes in mprj_io_in (37 bit)
- //always @(mprj_io_out[26:0]) begin
- 
-//	 enable <= 1'b1;
-	 always @(mprj_io) begin
-#1000 $display("MPRJ-IO-OUT = %b ", mprj_io_out[26:0]);
- 
- end
+	always @(mprj_io[37:18]) begin
+	         #1 $display("Inputs = %b ", mprj_io[37:18]);
+	end
 
 	wire flash_csb;
 	wire flash_clk;

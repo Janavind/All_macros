@@ -17,7 +17,7 @@
 
 `timescale 1 ns / 1 ps
 
-module macro_7_tb;
+module macro_10_tb;
 	reg clock;
 	reg RSTB;
 	reg CSB;
@@ -26,13 +26,34 @@ module macro_7_tb;
 
 	wire gpio;
 	wire [37:0] mprj_io;
+	wire [14:0] mprj_io_out;
 
-wire [7:0] ALU_Out1 =mprj_io[7:0];
-wire [7:0] ALU_Out2 =mprj_io[15:8]; // ALU 8-bit Output
-wire CarryOut1 = mprj_io[16];
-wire CarryOut2 = mprj_io[17]; // Carry Out Flag
-wire [7:0] x = mprj_io[25:18];
-wire y =mprj_io [26];
+	reg[3:0] A0;
+	reg[3:0] B0;
+	reg[3:0] A1;
+	reg[3:0] B1;
+	reg[1:0] ALU_Sel1;
+	reg[1:0] ALU_Sel2;
+
+
+ assign mprj_io_out[14:1]=mprj_io[17:4];
+ assign mprj_io_out[0]=mprj_io[0];
+
+ assign mprj_io[37:18] = {ALU_Sel2,ALU_Sel1,B1,A1,B0,A0};
+//ssign mprj_io[3] = (CSB == 1'b0) ? 1'b1 : 1'bz;
+//	assign mprj_io[3] = 1'b1;
+/*
+	assign mprj_io[18:15]=A0;
+	assign mprj_io[22:19]=B0;
+	assign mprj_io[26:23]=A1;
+	assign mprj_io[30:27]=B1;
+	assign mprj_io[32:31]=ALU_Sel1;
+	assign mprj_io[34:33]=ALU_Sel2;
+*/	
+assign mprj_io[3] =1'b1;
+//= (CSB == 1'b1) ? 1'b1 : 1'bz;	
+//	assign mprj_io[3]=1'b1;
+
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -45,11 +66,11 @@ wire y =mprj_io [26];
 	end
 
 	initial begin
-		$dumpfile("macro_7.vcd");
-		$dumpvars(0, macro_7_tb);
+		$dumpfile("macro_10.vcd");
+		$dumpvars(0, macro_10_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (25) begin
+		repeat (50) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -64,11 +85,25 @@ wire y =mprj_io [26];
 	end
 
 	initial begin
-		`ifdef GL
+	    // Observe Output pins [7:0]
+ 
+ A0<=4'b1001;
+ B0<=4'b1001;
+ A1<=4'b0000;
+ B1<=4'b0000;
+ ALU_Sel2<=2'b00;
+ ALU_Sel1<=2'b00;
+
+wait(mprj_io_out == 15'b001000000010101);
+//$display("display_output",mprj_io[14:0]);
+#1000;
+	$display("%c[1;25m",27);	
+	`ifdef GL
 	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
 		`else
 		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
 		`endif
+		$display("%c[0m",27);
 	    $finish;
 	end
 
@@ -79,6 +114,7 @@ wire y =mprj_io [26];
 		RSTB <= 1'b1;	    	// Release reset
 		#300000;
 		CSB = 1'b0;		// CSB can be released
+
 	end
 
 	initial begin		// Power-up sequence
@@ -96,8 +132,11 @@ wire y =mprj_io [26];
 		power4 <= 1'b1;
 	end
 
-	always @(mprj_io) begin
-		#1 $display("MPRJ-IO state = %b ", mprj_io[27:0]);
+	always @(mprj_io_out) begin
+	         #1 $display("Outputs = %b ", mprj_io_out[14:0]);
+	end
+	always @(mprj_io[37:18]) begin
+	         #1 $display("Inputs = %b ", mprj_io[37:18]);
 	end
 
 	wire flash_csb;
@@ -143,7 +182,7 @@ wire y =mprj_io [26];
 	);
 
 	spiflash #(
-		.FILENAME("macro_7.hex")
+		.FILENAME("macro_10.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),

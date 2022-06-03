@@ -24,7 +24,7 @@ set ::env(DESIGN_NAME) macro_13
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/macro_13.v \
-        $script_dir/../../verilog/rtl/my_alu_xor.v"
+        $script_dir/../../verilog/rtl/alu_xor_4.v"
 
 set ::env(DESIGN_IS_CORE) 0
 

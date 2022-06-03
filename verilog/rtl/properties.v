@@ -1,5 +1,5 @@
 always @(*) begin
-	if (active) begin
+	if (active) begin				//If active, the buffered outputs are passed to the actual io_pins
 	`ifdef USE_LA
 		_la1_data_buf_: assert(la1_data_out == buf_la1_data_out);
 	`endif

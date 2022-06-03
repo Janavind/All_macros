@@ -51,30 +51,44 @@ set ::env(PL_BASIC_PLACEMENT) 0
 
 ## Internal Macros
 #### Macro PDN Connections
-set ::env(FP_PDN_MACRO_HOOKS) "\
-        u_macro_7 vccd1 vssd1 "
-#        u_macro_test vccd1 vssd1  
-#	u_macro_7 vccd1 vssd1"
+#set ::env(FP_PDN_MACRO_HOOKS) "\
+  #      u_macro_7 vccd1 vssd1 \
+ #       u_macro_10 vccd1 vssd1 \  
+#	u_macro_13 vccd1 vssd1"
 
         ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
         $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-        $script_dir/../../verilog/rtl/macro_la.v "
-#	$script_dir/../../verilog/rtl/macro_7.v \
-#        $script_dir/../../verilog/rtl/macro_10.v "
-
+        $script_dir/../../verilog/rtl/macro_7.v \
+        $script_dir/../../verilog/rtl/macro_10.v \
+	$script_dir/../../verilog/rtl/macro_13.v \
+	$script_dir/../../verilog/rtl/macro_15.v \
+	$script_dir/../../verilog/rtl/macro_decap_3.v "
+#	$script_dir/../../verilog/rtl/macro_decap_12.v \
+#	$script_dir/../../verilog/rtl/macro_no_decap.v \
+#	$script_dir/../../verilog/rtl/macro_no_fill.v "
 
 set ::env(EXTRA_LEFS) "\ 
-	$script_dir/../../lef/macro_la.lef "
-#	$script_dir/../../lef/macro_7.lef \
-#        $script_dir/../../lef/macro_10.lef"
+	$script_dir/../../lef/macro_7.lef \
+        $script_dir/../../lef/macro_10.lef \
+	$script_dir/../../lef/macro_13.lef \
+	$script_dir/../../lef/macro_15.lef \
+	$script_dir/../../lef/macro_decap_3.lef "
+#	$script_dir/../../lef/macro_decap_12.lef \
+#	$script_dir/../../lef/macro_no_decap.lef \
+#	$script_dir/../../lef/macro_no_fill.lef "
 
 set ::env(EXTRA_GDS_FILES) "\ 
-	$script_dir/../../gds/macro_la.gds"
-#	$script_dir/../../gds/macro_7.gds \
-#        $script_dir/../../gds/macro_10.gds"
+	$script_dir/../../gds/macro_7.gds\
+        $script_dir/../../gds/macro_10.gds \
+	$script_dir/../../gds/macro_13.gds \
+	$script_dir/../../gds/macro_15.gds \
+	$script_dir/../../gds/macro_decap_3.gds "
+#	$script_dir/../../gds/macro_decap_12.gds \
+#	$script_dir/../../gds/macro_no_decap.gds \
+#	$script_dir/../../gds/macro_no_fill.gds "
 
 set ::env(FP_PDN_ENABLE_MACROS_GRID) "1"
 set ::env(FP_PDN_ENABLE_GLOBAL_CONNECTIONS) "1"
@@ -99,8 +113,10 @@ set ::env(RT_MAX_LAYER) "met4"
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
 #set ::env(SYNTH_STRATEGY) "AREA 0"
 set ::env(FP_PDN_CHECK_NODES) 1
-# set ::env(GLB_RT_ALLOW_CONGESTION) 1
-set ::env(GLB_RT_ADJUSTMENT) "0.20"
+
+#set ::env(GLB_RT_ALLOW_CONGESTION) 1
+
+set ::env(GLB_RT_ADJUSTMENT) "0.25"
 #set ::env(FP_PDN_POWER_STRAPS) "vccd1 vssd1 1, vccd2 vssd2 0, vdda1 vssa1 0, vdda2 vssa2 0"
 set ::env(MAGIC_WRITE_FULL_LEF) 1
 
