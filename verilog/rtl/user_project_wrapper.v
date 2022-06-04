@@ -214,7 +214,9 @@ macro_15 u_macro_15 (
 			.user_clock2(user_clock2),
 			.analog_io(analog_io)
 
-		);
+	);
+
+	
 
 macro_decap_3 u_macro_decap_3 (
 
@@ -249,7 +251,7 @@ macro_decap_3 u_macro_decap_3 (
 			.analog_io(analog_io)
 
 		);
-/*
+
 macro_decap_12 u_macro_decap_12 (
 
 	`ifdef USE_POWER_PINS
@@ -352,7 +354,7 @@ macro_no_fill u_macro_no_fill (
 
 		);
 
-		*/
+		
  endmodule	// user_project_wrapper
 
  `default_nettype wire

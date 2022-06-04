@@ -3,7 +3,10 @@
 #-v $(USER_PROJECT_VERILOG)/rtl/macro_7.v
 #-v $(USER_PROJECT_VERILOG)/rtl/macro_10.v
 #-v $(USER_PROJECT_VERILOG)/rtl/macro_13.v
--v $(USER_PROJECT_VERILOG)/rtl/macro_15.v
-# -v $(USER_PROJECT_VERILOG)/rtl/sample.v
+#-v $(USER_PROJECT_VERILOG)/rtl/macro_15.v
+#-v $(USER_PROJECT_VERILOG)/rtl/macro_decap_3.v
+#-v $(USER_PROJECT_VERILOG)/rtl/macro_decap_12.v
+#-v $(USER_PROJECT_VERILOG)/rtl/macro_no_decap.v
+-v $(USER_PROJECT_VERILOG)/rtl/macro_no_fill.v
 -v $(USER_PROJECT_VERILOG)/rtl/alu_xor_4.v
  
