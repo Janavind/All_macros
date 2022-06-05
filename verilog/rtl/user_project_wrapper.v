@@ -230,7 +230,7 @@ macro_15 u_macro_15 (
 	);
 
 	
-
+/*
 macro_decap_3 u_macro_decap_3 (
 
 	`ifdef USE_POWER_PINS
@@ -264,7 +264,7 @@ macro_decap_3 u_macro_decap_3 (
 			.analog_io(analog_io)
 
 		);
-
+*/
 macro_decap_12 u_macro_decap_12 (
 
 	`ifdef USE_POWER_PINS
