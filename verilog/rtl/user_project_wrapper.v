@@ -298,7 +298,7 @@ macro_decap_12 u_macro_decap_12 (
 			.analog_io(analog_io)
 
 		);
-
+/*
 macro_no_decap u_macro_no_decap (
 
 	`ifdef USE_POWER_PINS
@@ -332,6 +332,7 @@ macro_no_decap u_macro_no_decap (
 			.analog_io(analog_io)
 
 		);
+*/
 /*
 macro_no_fill u_macro_no_fill (
 
