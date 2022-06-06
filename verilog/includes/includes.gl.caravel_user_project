@@ -1,10 +1,10 @@
 # Caravel user project includes	     
 -v $(USER_PROJECT_VERILOG)/gl/user_project_wrapper.v	     
 #-v $(USER_PROJECT_VERILOG)/gl/macro_7.v    
-#-v $(USER_PROJECT_VERILOG)/gl/macro_10.v 
+-v $(USER_PROJECT_VERILOG)/gl/macro_10.v 
 #-v $(USER_PROJECT_VERILOG)/gl/macro_13.v
 #-v $(USER_PROJECT_VERILOG)/gl/macro_15.v
 #-v $(USER_PROJECT_VERILOG)/gl/macro_decap_3.v
 #-v $(USER_PROJECT_VERILOG)/gl/macro_decap_12.v
 #-v $(USER_PROJECT_VERILOG)/gl/macro_no_decap.v
--v $(USER_PROJECT_VERILOG)/gl/macro_no_fill.v
+#-v $(USER_PROJECT_VERILOG)/gl/macro_no_fill.v

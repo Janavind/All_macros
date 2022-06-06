@@ -64,31 +64,31 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
         $script_dir/../../verilog/rtl/macro_7.v \
         $script_dir/../../verilog/rtl/macro_10.v \
 	$script_dir/../../verilog/rtl/macro_13.v \
-	 $script_dir/../../verilog/rtl/macro_15.v "
-#	$script_dir/../../verilog/rtl/macro_decap_12.v "
-#	$script_dir/../../verilog/rtl/macro_decap_12.v "
-#	script_dir/../../verilog/rtl/macro_no_decap.v "
-#	$script_dir/../../verilog/rtl/macro_no_fill.v "
+	 $script_dir/../../verilog/rtl/macro_15.v \
+	$script_dir/../../verilog/rtl/macro_decap_3.v \
+	$script_dir/../../verilog/rtl/macro_decap_12.v \
+	$script_dir/../../verilog/rtl/macro_no_decap.v \
+	$script_dir/../../verilog/rtl/macro_no_fill.v "
 
 set ::env(EXTRA_LEFS) "\ 
 	$script_dir/../../lef/macro_7.lef \
         $script_dir/../../lef/macro_10.lef \
 	$script_dir/../../lef/macro_13.lef \
-	$script_dir/../../lef/macro_15.lef "
-#	$script_dir/../../lef/macro_decap_12.lef "
-#	$script_dir/../../lef/macro_decap_12.lef "
-#	$script_dir/../../lef/macro_no_decap.lef "
-#	$script_dir/../../lef/macro_no_fill.lef "
+	$script_dir/../../lef/macro_15.lef \
+	$script_dir/../../lef/macro_decap_3.lef \
+	$script_dir/../../lef/macro_decap_12.lef \
+	$script_dir/../../lef/macro_no_decap.lef \
+	$script_dir/../../lef/macro_no_fill.lef "
 
 set ::env(EXTRA_GDS_FILES) "\ 
 	$script_dir/../../gds/macro_7.gds\
         $script_dir/../../gds/macro_10.gds \
 	$script_dir/../../gds/macro_13.gds \
-	$script_dir/../../gds/macro_15.gds "
-#	$script_dir/../../gds/macro_decap_12.gds "
-#	$script_dir/../../gds/macro_decap_12.gds "
-#	$script_dir/../../gds/macro_no_decap.gds "
-#	$script_dir/../../gds/macro_no_fill.gds "
+	$script_dir/../../gds/macro_15.gds \
+	$script_dir/../../gds/macro_decap_3.gds \
+	$script_dir/../../gds/macro_decap_12.gds \
+	$script_dir/../../gds/macro_no_decap.gds \
+	$script_dir/../../gds/macro_no_fill.gds "
 
 set ::env(FP_PDN_ENABLE_MACROS_GRID) "1"
 set ::env(FP_PDN_ENABLE_GLOBAL_CONNECTIONS) "1"

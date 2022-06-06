@@ -89,6 +89,7 @@ module user_project_wrapper (
 	 assign la3_data_out = la_data_out[127:96];
 	 assign la3_oenb = la_oenb[127:96];
 
+
  macro_7 u_macro_7 (
 
 		 `ifdef USE_POWER_PINS
@@ -230,7 +231,7 @@ macro_15 u_macro_15 (
 	);
 
 	
-/*
+
 macro_decap_3 u_macro_decap_3 (
 
 	`ifdef USE_POWER_PINS
@@ -298,8 +299,8 @@ macro_decap_12 u_macro_decap_12 (
 			.analog_io(analog_io)
 
 		);
-*/
-/*
+
+
 macro_no_decap u_macro_no_decap (
 
 	`ifdef USE_POWER_PINS
@@ -333,8 +334,8 @@ macro_no_decap u_macro_no_decap (
 			.analog_io(analog_io)
 
 		);
-*/
-/*
+
+
 macro_no_fill u_macro_no_fill (
 
 	`ifdef USE_POWER_PINS
@@ -369,7 +370,7 @@ macro_no_fill u_macro_no_fill (
 
 		);
 
-*/		
+		
  endmodule	// user_project_wrapper
 
  `default_nettype wire
