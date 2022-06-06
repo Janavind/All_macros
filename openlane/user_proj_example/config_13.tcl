@@ -35,7 +35,7 @@ set ::env(CLOCK_PERIOD) "10"
 set ::env(FP_SIZING) absolute
 set ::env(TAP_DECAP_INSERTION) 1
 set ::env(FP_TAPCELL_DIST) "13"
-set ::env(DIE_AREA) "0 0 900 600"
+set ::env(DIE_AREA) "0 0 250 250"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 

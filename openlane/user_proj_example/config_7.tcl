@@ -34,12 +34,20 @@ set ::env(CLOCK_PERIOD) "10"
 set ::env(FP_SIZING) absolute
 set ::env(TAP_DECAP_INSERTION) 1
 set ::env(FP_TAPCELL_DIST) "7"
-set ::env(DIE_AREA) "0 0 900 600"
+set ::env(DIE_AREA) "0 0 250 250"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
 set ::env(PL_BASIC_PLACEMENT) 1
 set ::env(PL_TARGET_DENSITY) 0.70
+
+#set ::env(FILL_CELL) "sky130_fd_sc_hd__fill_"
+#set ::env(DECAP_CELL) "sky130_fd_sc_hd__decap_"
+#set ::env(FILL_CELL) "sky130_fd_sc_hd__fill*"
+#set ::env(DECAP_CELL) "sky130_ef_sc_hd__decap_12 sky130_fd_sc_hd__decap_8 sky130_fd_sc_hd__decap_6 sky130_fd_sc_hd__decap_4 sky130_fd_sc_hd__decap_3"
+#set ::env(RE_BUFFER_CELL) "sky130_fd_sc_hd__buf_4"
+#set ::env(CELL_PAD_EXCLUDE) "sky130_fd_sc_hd__tap* sky130_fd_sc_hd__decap* sky130_fd_sc_hd__fill*"
+#set ::env(CELL_PAD_EXCLUDE) "sky130_fd_sc_hd__tap* sky130_fd_sc_hd__decap* sky130_ef_sc_hd__decap* sky130_fd_sc_hd__fill*"
 
 #set ::env(DECAP_CELL) "sky130_ef_sc_hd__decap_12 sky130_fd_sc_hd__decap_3 sky130_fd_sc_hd__decap_4 sky130_fd_sc_hd__decap_6 sky130_fd_sc_hd__decap_8"
 

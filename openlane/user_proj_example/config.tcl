@@ -17,7 +17,7 @@ set ::env(PDK) "sky130A"
 set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 set script_dir [file dirname [file normalize [info script]]]
-set ::env(DESIGN_CONFIG) /opt/mpw6/sel_set/openlane/user_proj_example/config_no_fill.tcl
+set ::env(DESIGN_CONFIG) /opt/mpw6/sel_set/openlane/user_proj_example/config_15.tcl
 # set ::env(DESIGN_NAME) macro_7
 
 
